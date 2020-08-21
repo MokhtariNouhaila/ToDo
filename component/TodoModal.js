@@ -1,30 +1,66 @@
 import React, { Component } from 'react'
 
-import { TextInput, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, View, SafeAreaView, FlatList, } from 'react-native';
+import { TextInput, Text, StyleSheet,Keyboard, KeyboardAvoidingView, TouchableOpacity, View, SafeAreaView, FlatList, } from 'react-native';
 import colors from '../Colors';
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import tempData from '../tempData';
+import {styles} from '../assets/styles'
+
 
 export default class TodoModal extends React.Component {
     state = {
-        name: this.props.list.name,
-        color: this.props.list.color,
-        todos: this.props.list.todos,
-    };
-    renderTodo = todo => {
+        newTodo: "",
+        message:"non"
+    };   
+     toggelTodoCompleted=index=>{
+        
+        let list=this.props.list;
+        list.todos[index].completed=!list.todos[index].completed;
+        this.props.updateList(list);
+    }
+    addTodo=()=>{
+        let list =this.props.list;
+        if(!list.todos.some(todo=>todo.title===this.state.newTodo) && this.state.newTodo.length!=0)
+        {
+ list.todos.push({title:this.state.newTodo,completed:false});
+        this.props.updateList(list); 
+        this.setState({newTodo:""});
+        Keyboard.dismiss;
+        }
+        else if(list.todos.some(todo=>todo.title===this.state.newTodo)){
+            this.setState({message:"existe"})
+        }
+        else if(this.state.newTodo.length==0){
+            this.setState({message:"vide"})
+
+        }
+
+       
+       
+    }
+    deleteTodo=index=>{
+        let list =this.props.list;
+        list.todos.splice(index,1);
+        this.props.updateList(list);
+
+    }
+    renderTodo = (todo,index) => {
         return (
             <View style={styles.todoContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.toggelTodoCompleted(index)}>
                     <Ionicons
                         name={todo.completed ? "ios-square" : "ios-square-outline"} size={25} color={colors.gray} style={{ width: 32 }} />
                 </TouchableOpacity>
-                <Text style={[styles.todo, { color: todo.completed ? colors.gray : colors.black }]}>{todo.title}</Text>
+                <Text style={[styles.todo, {width:190, color: todo.completed ? colors.gray : colors.black }]}>{todo.title}</Text>
+                <AntDesign name="close" size={24} style={styles.closebtn}  onPress={()=>this.deleteTodo(index)}/>
             </View>
         )
     }
+
     render() {
-        const taskCount = this.state.todos.length;
-        const completedCount = this.state.todos.filter(todo => todo.completed).length
+        const list = this.props.list;
+        const taskCount = list.todos.length;
+        const completedCount = list.todos.filter(todo => todo.completed).length
         return (
             <SafeAreaView style={styles.container}>
                 <TouchableOpacity
@@ -32,29 +68,33 @@ export default class TodoModal extends React.Component {
                     style={{ position: "absolute", top: 30, right: 320, zIndex: 10 }}>
                     <AntDesign name="close" size={24} color={colors.black} />
                 </TouchableOpacity>
-                <View style={[styles.section, styles.header, { borderBottomColor: this.state.color }]}>
+                <View style={[styles.section, styles.header, { borderBottomColor: list.color }]}>
                     <View>
                         <Text style={styles.title}>
-                            {this.state.name}
+                            {list.name}
                         </Text>
                         <Text style={styles.taskCount}>
                             {completedCount} of {taskCount} tasks
                         </Text>
                     </View>
-                </View>
-                <View style={[styles.section, { flex: 3 }]}>
+                </View>         
+                <View style={[styles.section, { flex: 3 }]}>       
+
                     <FlatList
-                        data={this.state.todos}
-                        renderItem={({ item }) => this.renderTodo(item)}
-                        keyExtractor={item => item.title}
+                        data={list.todos}
+                        renderItem={({ item,index }) => this.renderTodo(item,index)}
+                        keyExtractor={(_,index) => index.toString()}
                         contentContainerStyle={{ paddingHorizontal: 32, paddingVertical: 20 }}
                         showsVerticalScrollIndicator={false}
                     />
 
                 </View>
                 <KeyboardAvoidingView style={[styles.section, styles.footer]}  >
-                    <TextInput style={[styles.input, { borderColor: this.state.color }]} />
-                    <TouchableOpacity style={[styles.addTodo, { backgroundColor: this.state.color }]}>
+                {this.state.message=="existe"?<Text style={styles.addM}>already exists !!</Text>:(this.state.message=="vide"?<Text style={styles.addM}>Is empty !!!</Text>:null)}
+
+                    <TextInput style={[styles.input, { borderColor: list.color }]} onChangeText={text=>this.setState({newTodo:text})} value={this.state.newTodo} />
+               
+                    <TouchableOpacity style={[styles.addTodo, { backgroundColor: list.color }]} onPress={()=>this.addTodo()}>
                         <AntDesign name="plus" size={20} color={colors.white} />
                     </TouchableOpacity>
                 </KeyboardAvoidingView>
@@ -63,64 +103,4 @@ export default class TodoModal extends React.Component {
     }
 
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    section: {
-        flex: 1,
-        alignSelf: "stretch"
-    },
-    header: {
-        justifyContent: "flex-end",
-        marginLeft: 60,
-        marginTop: 30,
-        borderBottomWidth: 3
-    },
-    title: {
-
-        fontSize: 30,
-        fontWeight: "800",
-        color: colors.black
-    },
-    taskCount: {
-        marginTop: 4,
-
-        color: colors.gray,
-        fontWeight: "600",
-    },
-    footer: {
-        paddingHorizontal: 32,
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    input: {
-        flex: 1,
-        height: 48,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderRadius: 6,
-        marginRight: 8,
-        paddingHorizontal: 8,
-    },
-    addTodo: {
-        borderRadius: 4,
-        padding: 16,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    todoContainer: {
-        paddingVertical: 16,
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    todo: {
-        color: colors.black,
-        fontWeight: "700",
-        fontSize: 16
-    }
-
-
-});
+ 
