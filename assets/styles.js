@@ -50,6 +50,14 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    createMod: {
+        marginTop: 24,
+        height: 50,
+        marginLeft:50,  marginRight:50,
+        borderRadius: 6,
+        alignItems: "center",
+        justifyContent: "center",
+    },
     colorSelectM: {
         marginTop: 12,
         width: 30,
@@ -70,25 +78,27 @@ export const styles = StyleSheet.create({
         borderRadius: 6,
     },
     listTitle: {
-        fontSize: 25,
+        fontSize: 28,
         fontWeight: "bold",
-
         marginLeft: 30,
         marginRight: 30,
-        marginBottom: 30,
+        marginBottom: 10,
+        marginTop:10,
         color: colors.white,
         textDecorationLine: "underline"
 
     },
     count: {
-        fontSize: 20,
+        fontSize: 22,
+        
         fontWeight: "200",
         color: colors.white,
 
     },
     titre: {
-        fontSize: 15,
-        fontWeight: "700",
+        fontSize: 19,
+        fontWeight: "600",
+        marginBottom: 10,
         color: colors.white,
     },
 
@@ -140,11 +150,21 @@ export const styles = StyleSheet.create({
     },
     closebtn: {
         position: "absolute",
-        marginLeft: 270,
-        alignItems: "center",
+        marginLeft: 240,
+         alignItems: "center",
         justifyContent: "center",
         color: colors.red,
 
+    },
+    inputMod:{
+          borderWidth: StyleSheet.hairlineWidth,
+     marginLeft:50,
+     marginRight:50,
+        borderRadius: 6,
+        height: 50,
+        marginTop: 150,
+        paddingHorizontal: 13,
+        fontSize: 18
     },
 
   
@@ -158,7 +178,8 @@ export const styles = StyleSheet.create({
         fontSize: 38,
         fontWeight: "700",
         color: colors.black,
-        paddingHorizontal: 64,
+        marginTop:120,
+     paddingHorizontal: 64,
     },
 
 

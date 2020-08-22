@@ -8,6 +8,7 @@ import TodoList from './component/TodoList';
 import AddListModal from './component/addListModal';
 import Fire from './Fire';
 import { styles } from './assets/styles'
+console.disableYellowBox = true;
 
 export default class App extends React.Component {
   state = {
@@ -18,10 +19,10 @@ export default class App extends React.Component {
   };
   componentDidMount() {
     firebase = new Fire((error, user) => {
-      /*if(error)
+      if(error)
        {
          return alert("something wrong");
-       }*/
+       }
       firebase.getLists(lists => {
         this.setState({ lists, user }, () => {
           this.setState({ loading: false });
@@ -79,7 +80,7 @@ export default class App extends React.Component {
 
         </View>
 
-        <View style={{ height: 253 }}>
+        <View style={{ height: 330}}>
 
           <FlatList
             data={this.state.lists}
