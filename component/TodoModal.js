@@ -80,7 +80,7 @@ export default class TodoModal extends React.Component {
                
                 <TextInput   multiline={true} onChangeText={(text) => this.updateTodo(text,index)} style={[styles.todo, { width: 190, color: todo.completed ? colors.gray : colors.black }]} defaultValue={todo.title}/>
               
-                <AntDesign name="close" size={24} style={styles.closebtn} onPress={() => this.deleteTodo(index)} />
+                <AntDesign name="close" size={27} style={styles.closebtn} onPress={() => this.deleteTodo(index)} />
             </View>
         )
     }
