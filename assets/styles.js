@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     createMod: {
         marginTop: 24,
         height: 50,
-        marginLeft:50,  marginRight:50,
+        marginLeft:30,  marginRight:30,
         borderRadius: 6,
         alignItems: "center",
         justifyContent: "center",
@@ -158,8 +158,8 @@ export const styles = StyleSheet.create({
     },
     inputMod:{
           borderWidth: StyleSheet.hairlineWidth,
-     marginLeft:50,
-     marginRight:50,
+     marginLeft:30,
+     marginRight:30,
         borderRadius: 6,
         height: 50,
         marginTop: 150,

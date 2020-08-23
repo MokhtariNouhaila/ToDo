@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { TextInput, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, View, } from 'react-native';
 import colors from '../Colors';
 import { AntDesign } from "@expo/vector-icons";
-import {styles} from '../assets/styles';
+import { styles } from '../assets/styles';
 
 
 export default class addListModal extends React.Component {
@@ -11,21 +11,22 @@ export default class addListModal extends React.Component {
     state = {
         name: "",
         color: this.backgroundColors[0],
-        message:false,
+        message: false,
     };
-    createTodo=()=>{
-        const {name,color}=this.state
-       const list={name,color};
-       if(this.state.name!=""){
-             this.props.addList(list);
-              this.setState({name:""});
-        this.props.closeModal();
-        this.setState({message:false})
-       }
-     else{
-        this.setState({message:true})
-     }
+    createTodo = () => {
+        const { name, color } = this.state;
       
+        const list = { name, color };
+        if (this.state.name != "") {
+            this.props.addList(list);
+            this.setState({ name: "" });
+            this.props.closeModal();
+            this.setState({ message: false })
+        }
+        else {
+            this.setState({ message: true })
+        }
+
     };
     renderColor() {
         return this.backgroundColors.map(color => {
@@ -38,7 +39,7 @@ export default class addListModal extends React.Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container}  >
-                <TouchableOpacity style={{ position: "absolute",  top: 20, right: 290}}>
+                <TouchableOpacity style={{ position: "absolute", top: 20, right: 290 }}>
                     <AntDesign name="close" size={24} color={colors.black} onPress={this.props.closeModal} />
                 </TouchableOpacity>
                 <View style={{ alignSelf: "stretch", marginHorizontal: 32 }}>
@@ -48,17 +49,17 @@ export default class addListModal extends React.Component {
               </Text>
                     <TextInput
                         style={styles.inputM} placeholder="List name ? "
-                        onChangeText={name => this.setState({ name:name })} 
-                        defaultValue={this.state.name}/>
-                        {this.state.message?<Text style={styles.addM}>the name is empty !!!</Text>:null}
-                        
+                        onChangeText={name => this.setState({ name: name })}
+                        defaultValue={this.state.name} />
+                    {this.state.message ? <Text style={styles.addM}>the name is empty !!!</Text> : null}
+
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>{this.renderColor()}
 
                     </View>
                     <TouchableOpacity
-                     style={[styles.createM, {  backgroundColor: this.state.color}]}
-                     onPress={this.createTodo}
-                     >
+                        style={[styles.createM, { backgroundColor: this.state.color }]}
+                        onPress={this.createTodo}
+                    >
                         <Text style={{ color: colors.white, fontWeight: "600" }}>
                             Create !
                   </Text>
@@ -70,4 +71,3 @@ export default class addListModal extends React.Component {
     }
 }
 
- 

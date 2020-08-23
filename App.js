@@ -57,7 +57,7 @@ export default class App extends React.Component {
   };
   render() {
     if (this.state.loading) {
-      return (<View style={styles.container}><ActivityIndicator size="large" color={colors.blue} /></View>)
+      return (<View style={styles.container}><ActivityIndicator size="large" color="coral" /></View>)
 
     }
     return (
@@ -76,7 +76,7 @@ export default class App extends React.Component {
             onPress={() => this.toggleAddTodoModal()}>
             <AntDesign name="plus" size={16} color="coral" />
           </TouchableOpacity>
-          <Text style={[styles.add, { color: "coral" }]}>Add List</Text>
+          <Text style={[styles.add, { color: "coral" }]}>New List</Text>
 
         </View>
 
@@ -92,8 +92,9 @@ export default class App extends React.Component {
               this.renderList(item)
             }
             keyboardShouldPersistTaps="always"
-          />
-        </View>
+          /> 
+         </View>
+      
       </View>
     );
   }

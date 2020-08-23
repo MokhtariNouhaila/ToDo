@@ -25,6 +25,7 @@ export default class TodoList extends React.Component {
                     <TodoModal list={list} closeModal={() => this.toggleListModal()}
                         updateList={this.props.updateList} />
                 </Modal>
+                
                      <AntDesign name="close" size={25} color={list.color} onPress={() => this.props.deleteList(list)} />
                  <TouchableOpacity
                     onPress={() => this.toggleListModal()}
