@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-
 import { TextInput, Text, Modal, Keyboard, KeyboardAvoidingView, TouchableOpacity, View, SafeAreaView, FlatList, } from 'react-native';
 import colors from '../Colors';
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import tempData from '../tempData';
 import { styles } from '../assets/styles'
 
 
@@ -77,11 +75,10 @@ export default class TodoModal extends React.Component {
     renderTodo = (todo, index) => {
         return (
             <View style={styles.todoContainer}>
-                <TouchableOpacity onPress={() => this.toggelTodoCompleted(index)}>
-                    <Ionicons
-                        name={todo.completed ? "ios-square" : "ios-square-outline"} size={25} color={colors.gray} style={{ width: 32 }} />
-                </TouchableOpacity>
-                <TextInput onChangeText={(text) => this.updateTodo(text,index)} style={[styles.todo, { width: 190, color: todo.completed ? colors.gray : colors.black }]} defaultValue={todo.title}/>
+                    <Ionicons onPress={() => this.toggelTodoCompleted(index)}
+                        name={todo.completed ? "ios-square" : "ios-square-outline"} size={30} color={colors.gray} style={{ width: 38 }} />
+               
+                <TextInput   multiline={true} onChangeText={(text) => this.updateTodo(text,index)} style={[styles.todo, { width: 190, color: todo.completed ? colors.gray : colors.black }]} defaultValue={todo.title}/>
               
                 <AntDesign name="close" size={24} style={styles.closebtn} onPress={() => this.deleteTodo(index)} />
             </View>

@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
       },
     inputM: {
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: colors.blue,
+       
         borderRadius: 6,
         height: 50,
         marginTop: 8,

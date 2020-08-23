@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { TextInput, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity, View, } from 'react-native';
+import { TextInput, Text, KeyboardAvoidingView, TouchableOpacity, View, } from 'react-native';
 import colors from '../Colors';
 import { AntDesign } from "@expo/vector-icons";
 import { styles } from '../assets/styles';
@@ -48,7 +48,7 @@ export default class addListModal extends React.Component {
 
               </Text>
                     <TextInput
-                        style={styles.inputM} placeholder="List name ? "
+                        style={[styles.inputM,{ borderColor: this.state.color}]} placeholder="List name ? "
                         onChangeText={name => this.setState({ name: name })}
                         defaultValue={this.state.name} />
                     {this.state.message ? <Text style={styles.addM}>the name is empty !!!</Text> : null}

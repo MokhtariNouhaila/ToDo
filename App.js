@@ -1,10 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
-import colors from './Colors';
-import { AntDesign } from "@expo/vector-icons";
-import tempData from './tempData';
-import TodoList from './component/TodoList';
+import { Text, View, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
+ import { AntDesign } from "@expo/vector-icons";
+ import TodoList from './component/TodoList';
 import AddListModal from './component/addListModal';
 import Fire from './Fire';
 import { styles } from './assets/styles'
