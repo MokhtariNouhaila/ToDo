@@ -11,14 +11,14 @@ export default class TodoModal extends React.Component {
     state = {
         newTodo: "",
         message: "non",
-        title:this.props.list.name,
+        title: this.props.list.name,
         color: this.props.list.color,
         open: false,
     };
     toggleTitleModal() {
         this.setState({ open: !this.state.open }),
             this.setState({ message: "" }),
-            this.setState({title:this.props.list.name})
+            this.setState({ title: this.props.list.name })
 
     }
     toggelTodoCompleted = index => {
@@ -27,9 +27,11 @@ export default class TodoModal extends React.Component {
         list.todos[index].completed = !list.todos[index].completed;
         this.props.updateList(list);
     }
-    toggelTodoTitle() { 
-       
-        let list = this.props.list; list.color = this.state.color;
+
+    toggelTodoTitle() {
+
+        let list = this.props.list;
+        list.color = this.state.color;
         if (this.state.title.length != 0) {
             list.name = this.state.title;
             this.props.updateList(list);
@@ -66,20 +68,20 @@ export default class TodoModal extends React.Component {
         this.props.updateList(list);
 
     }
-    updateTodo = (text,index) => {
+    updateTodo = (text, index) => {
         let list = this.props.list;
-        list.todos[index].title=text;
+        list.todos[index].title = text;
         this.props.updateList(list);
 
     }
     renderTodo = (todo, index) => {
         return (
             <View style={styles.todoContainer}>
-                    <Ionicons onPress={() => this.toggelTodoCompleted(index)}
-                        name={todo.completed ? "ios-square" : "ios-square-outline"} size={30} color={colors.gray} style={{ width: 38 }} />
-               
-                <TextInput   multiline={true} onChangeText={(text) => this.updateTodo(text,index)} style={[styles.todo, { width: 190, color: todo.completed ? colors.gray : colors.black }]} defaultValue={todo.title}/>
-              
+                <Ionicons onPress={() => this.toggelTodoCompleted(index)}
+                    name={todo.completed ? "ios-square" : "ios-square-outline"} size={30} color={colors.gray} style={{ width: 38 }} />
+
+                <TextInput multiline={true} onChangeText={(text) => this.updateTodo(text, index)} style={[styles.todo, { width: 190, color: todo.completed ? colors.gray : colors.black }]} defaultValue={todo.title} />
+
                 <AntDesign name="close" size={27} style={styles.closebtn} onPress={() => this.deleteTodo(index)} />
             </View>
         )
@@ -87,7 +89,7 @@ export default class TodoModal extends React.Component {
     renderColor() {
         return this.backgroundColors.map(color => {
             return (
-                <TouchableOpacity key={color} style={[styles.colorSelectM, { backgroundColor: color,marginLeft:15 }]}
+                <TouchableOpacity key={color} style={[styles.colorSelectM, { backgroundColor: color, marginLeft: 10 }]}
                     onPress={() => this.setState({ color })} />
             )
         })
@@ -95,7 +97,7 @@ export default class TodoModal extends React.Component {
 
     render() {
         const list = this.props.list;
-           const taskCount = list.todos.length;
+        const taskCount = list.todos.length;
         const completedCount = list.todos.filter(todo => todo.completed).length
 
         return (
@@ -105,12 +107,13 @@ export default class TodoModal extends React.Component {
                         <TouchableOpacity style={{ position: "absolute", top: 20, right: 290 }}>
                             <AntDesign name="close" size={24} color={colors.black} onPress={() => this.toggleTitleModal()} />
                         </TouchableOpacity>
-                        <TextInput style={[styles.inputMod, { borderColor: this.state.color}]}
+
+                        <TextInput style={[styles.inputMod, { borderColor: this.state.color }]}
                             defaultValue={list.name}
                             onChangeText={title => this.setState({ title: title })}
                         />
                         {this.state.message == "nonTitre" ? <Text style={[styles.addM, { marginLeft: 30 }]}>Is empty !!!</Text> : null}
-                        <View style={{ flexDirection: "row" ,marginLeft:15}}>{this.renderColor()}
+                        <View style={{ flexDirection: "row", marginLeft: 15 }}>{this.renderColor()}
 
                         </View>
                         <TouchableOpacity
@@ -128,6 +131,7 @@ export default class TodoModal extends React.Component {
                     style={{ position: "absolute", top: 20, right: 290 }}>
                     <AntDesign name="close" size={24} color={colors.black} />
                 </TouchableOpacity>
+
                 <View style={[styles.section, styles.header, { borderBottomColor: list.color }]}>
                     <View>
                         <Text style={styles.title} onPress={() => this.toggleTitleModal()}>
@@ -158,8 +162,8 @@ export default class TodoModal extends React.Component {
                         <AntDesign name="plus" size={20} color={colors.white} />
                     </TouchableOpacity>
                 </KeyboardAvoidingView>
-              
-             
+
+
             </SafeAreaView>
         )
     }
