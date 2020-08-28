@@ -55,7 +55,7 @@ export default class App extends React.Component {
   };
   render() {
     if (this.state.loading) {
-      return (<View style={styles.container}><ActivityIndicator size="large" color="coral" /></View>)
+      return (<View style={styles.container}><ActivityIndicator size="large" color="#24A6D9" /></View>)
 
     }
     return (
@@ -66,15 +66,15 @@ export default class App extends React.Component {
         <View style={{ flexDirection: "row" }}>
           <View />
           <Text style={styles.titleG}>
-            ToDo <Text style={{ fontWeight: "300", color: "coral" }}>List</Text>
+            ToDo <Text style={{ fontWeight: "300", color: "#24A6D9" }}>List</Text>
           </Text>
         </View>
         <View style={{ marginVertical: 48 }}>
           <TouchableOpacity style={styles.addList}
             onPress={() => this.toggleAddTodoModal()}>
-            <AntDesign name="plus" size={16} color="coral" />
+            <AntDesign name="plus" size={16} color="#24A6D9" />
           </TouchableOpacity>
-          <Text style={[styles.add, { color: "coral" }]}>New List</Text>
+          <Text style={[styles.add, { color: "#24A6D9" }]}>New List</Text>
 
         </View>
 

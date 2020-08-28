@@ -185,7 +185,7 @@ export const styles = StyleSheet.create({
 
     addList: {
         borderWidth: 2,
-        borderColor: "coral",
+        borderColor: "#24A6D9",
         borderRadius: 4,
         padding: 16,
         alignItems: "center",

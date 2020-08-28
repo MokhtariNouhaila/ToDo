@@ -89,7 +89,7 @@ export default class TodoModal extends React.Component {
     renderColor() {
         return this.backgroundColors.map(color => {
             return (
-                <TouchableOpacity key={color} style={[styles.colorSelectM, { backgroundColor: color, marginLeft: 10 }]}
+                <TouchableOpacity key={color} style={[styles.colorSelectM, { backgroundColor: color, marginLeft: 14}]}
                     onPress={() => this.setState({ color })} />
             )
         })
